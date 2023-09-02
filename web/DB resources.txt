@@ -1,0 +1,26 @@
+CREATE TABLE logDetails(
+	customer_id int PRIMARY KEY AUTO_INCREMENT,
+    firstName varchar(30),
+    lastName varchar(30),
+    email varchar(30) UNIQUE,
+    passcode varchar(10),
+    mobileNo varchar(14) UNIQUE
+);
+
+CREATE TABLE favorites(
+    resturant_id int PRIMARY KEY AUTO_INCREMENT,
+    customer_id int,
+    resturant_name varchar(30),
+    FOREIGN KEY (customer_id) REFERENCES logdetails(customer_id)
+);
+
+CREATE TABLE orders(
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    resturant_name VARCHAR(30),
+    customer_name VARCHAR(30),
+    email VARCHAR(30) UNIQUE,
+    NUMBER VARCHAR(14) UNIQUE,
+    qty INT,
+    food VARCHAR(30),
+    address VARCHAR(30)
+);
