@@ -192,6 +192,7 @@
                         <input type="text"  placeholder="Your Address" name='address'/>
                     </div>
                     <input type="hidden" name="restuName" value="Tandoori House">
+                    <input type="hidden" name="fileName" value="resturant1.jsp">
                     <input type="submit" value='Order Now' class="order_btn" name='resturant1'>
                 </form>
             </div>

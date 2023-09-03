@@ -194,6 +194,7 @@
                         <input type="text"  placeholder="Your Address" name='address'/>
                     </div>
                     <input type="hidden" name="restuName" value="Pumpernickel Bakery">
+                    <input type="hidden" name="fileName" value="resturant2.jsp">
                     <input type="submit" value='Order Now' class="order_btn" name='resturant2'>
                 </form>
             </div>

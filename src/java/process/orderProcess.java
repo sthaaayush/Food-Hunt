@@ -26,9 +26,12 @@ public class orderProcess extends HttpServlet {
             String qty = request.getParameter("quantity");
             String food = request.getParameter("food");
             String address = request.getParameter("address");
+            
+            String fileName=request.getParameter("fileName");
+            
             if (name.equals("") || email.equals("") || number.equals("") || qty.equals("") || food.equals("") || address.equals("")) {
                 out.write("<script>alert('Order Field should be fill Properly');</script>");
-                RequestDispatcher rd = request.getRequestDispatcher("resturant1.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher(fileName);
                 rd.include(request, response);
             } else {
                 if (name.matches("^[A-Za-z][A-Za-z ]{2,29}$")) {
@@ -48,16 +51,16 @@ public class orderProcess extends HttpServlet {
                         stm.executeUpdate();
                         con.close();
                         out.write("<script>alert('Order Placed Sucessfully');</script>");
-                        RequestDispatcher rd = request.getRequestDispatcher("resturant1.jsp");
+                        RequestDispatcher rd = request.getRequestDispatcher(fileName);
                         rd.include(request, response);
                     } catch (Exception e) {
                         out.write("<script>alert('Error: " + e.getMessage() + "');</script>");
-                        RequestDispatcher rd = request.getRequestDispatcher("resturant1.jsp");
+                        RequestDispatcher rd = request.getRequestDispatcher(fileName);
                         rd.include(request, response);
                     }
                 } else {
                     out.write("<script>alert('Invalid name');</script>");
-                    RequestDispatcher rd = request.getRequestDispatcher("resturant1.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher(fileName);
                     rd.include(request, response);
                 }
             }
