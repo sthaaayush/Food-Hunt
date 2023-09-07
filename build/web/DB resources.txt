@@ -8,10 +8,8 @@ CREATE TABLE logDetails(
 );
 
 CREATE TABLE favorites(
-    resturant_id int PRIMARY KEY AUTO_INCREMENT,
-    customer_id int,
-    resturant_name varchar(30),
-    FOREIGN KEY (customer_id) REFERENCES logdetails(customer_id)
+    resturant_id int PRIMARY KEY,
+    resturant_name varchar(30)
 );
 
 CREATE TABLE orders(
@@ -21,6 +19,7 @@ CREATE TABLE orders(
     email VARCHAR(30) UNIQUE,
     NUMBER VARCHAR(14) UNIQUE,
     qty INT,
+    price INT,
     food VARCHAR(30),
     address VARCHAR(30)
 );

@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width . initial-scale=1.0" />
         <title>Welcome to Tandoori House</title>
         <link rel="stylesheet" href="resturant1.css"/>
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet"href="https://cdnresturant1js.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </head>
     <body>
@@ -51,7 +51,7 @@
             </p>
 
             <div class="main_btn">
-                <a href="#">Oder Now</a>
+                <a href="#">Order Now</a>
                 <i class="fa fa-angle-right"></i>
             </div>
         </section>
@@ -76,7 +76,7 @@
                     </p>
                 </div>
             </div>
-            <a href="#Order" class="about_btn">Order Now</a>
+            <a href="#" class="about_btn">Order Now</a>
         </div>
         <!--MENU-->
 
@@ -110,7 +110,12 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half"></i>
                         </div>
-                        <a href="#Order" class="menu_btn">Order Now</a>
+                        <form method="post" action="#Order" style="display: flex;
+                              justify-content: center;">
+                            <input type="hidden" name="dishName" value="<%= dish_name[i]%>">
+                            <input type="hidden" name="dishPrice" value="<%= dish_price[i]%>">
+                            <input type="submit" value="Order Now" class="menu_btn">
+                        </form>
                     </div>
                 </div>
                 <%}%>
@@ -166,7 +171,7 @@
                 <div class="order_img">
                     <img src="resturant/r_imgs/o.jpg" />
                 </div>
-                <form action="orderProcess" method='post'>
+                <form action="orderConfirm.jsp" method='post'>
                     <div class="input">
                         <p>Name</p>
                         <input type="text"  placeholder="Your Name" name='name'/>
@@ -181,17 +186,27 @@
                     </div>
                     <div class="input">
                         <p>How much</p>
-                        <input type="text"  placeholder="Number of orders" name='quantity'/>
+                        <input type="number"  placeholder="Number of orders" name='quantity'/>
                     </div>
                     <div class="input">
                         <p>Your Order</p>
-                        <input type="text"  placeholder="Food name" name='food'/>
+                        <input type="text"  placeholder="Food name" value="<%
+                            if (request.getMethod().equalsIgnoreCase("post")) {
+                                out.write(request.getParameter("dishName"));
+                            }
+                               %>" name='order' />
                     </div>
                     <div class="input">
                         <p>Address</p>
                         <input type="text"  placeholder="Your Address" name='address'/>
                     </div>
                     <input type="hidden" name="restuName" value="Tandoori House">
+                    <input type="hidden" name="fileName" value="resturant1.jsp">
+                    <input type="hidden" name="dishPrice" value="<%
+                        if (request.getMethod().equalsIgnoreCase("post")) {
+                            out.write(request.getParameter("dishPrice"));
+                        }
+                           %>">
                     <input type="submit" value='Order Now' class="order_btn" name='resturant1'>
                 </form>
             </div>

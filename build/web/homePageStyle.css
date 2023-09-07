@@ -27,6 +27,42 @@ section nav {
     z-index: 1000;
 }
 
+.submit-button {
+    font-size: 35px;
+    width: 25px;
+    height: 33px;
+    border: none;
+    outline: none;
+    border-radius: 1em;
+    mix-blend-mode: color-burn;
+}
+
+.myButtton{
+    background-color: white;
+    border: 0px white solid;
+    font-size: 20px;
+    cursor: pointer;
+}
+.content{
+    border: 1px black solid;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 1em;
+    background-color: rgb(129, 241, 204, 0.4);
+}
+.favContainer{
+    padding: 5px;
+    height: 30em;
+    overflow: scroll;
+    width: fit-content;
+    border-radius: 1em;
+    float: right;
+    position: fixed;
+    top: 80px;
+    z-index: 1000;
+    right: 30px;
+}
+
 section nav .logo image {
     width: 100px;
     cursor: pointer;

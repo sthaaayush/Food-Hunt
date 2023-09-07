@@ -1,3 +1,4 @@
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,6 +7,7 @@
         <title>Food Hunt</title>   
         <link rel="stylesheet" href="homePageStyle.css">
         <link rel="icon" href="./imgs/logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--  yo chai cdnjs website bata link leko icon haru rakhnu ko lagi  such as search ko icon rakheko-->
         <!-- yo chai kind ko library ho icon haru use garnu lai -->
@@ -13,7 +15,67 @@
     <body>
         <section id="Home">
 
-            <%@include file="header.html" %>
+            <nav>
+                <div class="logo">
+                    <img src="./imgs/logo.png">
+                </div>
+                <ul>
+                    <li><a href="#Home" >Home</a></li>
+                    <li><a href="#About" >About</a></li>
+                    <li><a href="#Menu" >Menu</a></li>
+                    <li><a href="#Review"> Review</a></li>
+                    <li><a href="#Login" >Login</a></li>
+                </ul>
+
+                <div class="icon">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass" style="color: rgb(238, 134, 36);"></i>
+                    <!-- fa-search vaneko chai search icon rakhkeo  -->
+                    <button class="fa-regular fa-heart myButtton"style="color: rgb(238,134,36);" id="myButtton" onclick="toggleVisibility()"></button>
+
+                    <i class="fa-solid fa-cart-shopping" style="color: rgb(238,134,36);"></i>      
+                </div>
+            </nav>
+            <div class="favContainer" id="myDiv" style="display: none">
+                <h4>Your Favorite</h4>
+                <%
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/food_hunt", "root", "");
+                        String sql = "Select * From favorites;";
+                        PreparedStatement stm = con.prepareStatement(sql);
+                        ResultSet rs = stm.executeQuery();
+                        while (rs.next()) {
+                            String id = rs.getString("resturant_id");
+
+                %>
+                <div class="content">
+                    <b><%= rs.getString("resturant_name")%></b>
+                    <br>
+                    djdjsjdnlddfn dfkd fdjfjflnikfd jdfsdffksdnf<br>
+                    djdjsjdnlddfn dfkd fdjfjflnikfd jdfsdffksdnf<br>
+                    djdjsjdnlddfn dfkd fdjfjflnikfd jdfsdffksdnf<br>
+                    <a style="font-size:15px" href="deletingFav.jsp?id=<%= id%>"><i class="fa fa-trash-o dustbin"></i></a>
+                </div>
+                <%                        }
+                        con.close();
+                    } catch (Exception e) {
+
+                    }
+                %>
+            </div>
+            <script>
+                const div = document.getElementById("myDiv");
+                const button = document.getElementById("myButton");
+                function toggleVisibility() {
+                    if (div.style.display === "none") {
+                        div.style.display = "inline";
+                    } else {
+                        div.style.display = "none";
+                    }
+                }
+                button.addEventListener("click", toggleVisibility);
+
+            </script>
 
             <div class="main">
                 <div class="men_text">
@@ -38,7 +100,7 @@
                 <i class="fa-solid fa-angle-right"></i>
             </div>
         </section>
-        <hr>
+
         <!-- ABOUT -->
         <div class="about" id="About">
             <div class="about_main">
@@ -66,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <hr>
+
         <!-- MENU -->
 
 
@@ -76,8 +138,8 @@
                 <%
                     String shop_name[] = {"Fresh Kathmandu", "Aku Pema Restaurant", "Third Eye Restaurant",
                         "Agan", "Khaja Ghar", "Bota Momo", "Pumpernickel Bakery", "Tandoori House"};
-                    String resturant_name[]={"resturant1.jsp","resturant2.jsp","resturant1.jsp","resturant2.jsp",
-                                            "resturant1.jsp","resturant2.jsp","resturant1.jsp","resturant2.jsp"};
+                    String resturant_name[] = {"resturant1.jsp", "resturant2.jsp", "resturant1.jsp", "resturant2.jsp",
+                        "resturant1.jsp", "resturant2.jsp", "resturant1.jsp", "resturant2.jsp"};
                     for (int i = 0; i < 8; i++) {
                 %>
                 <div class="menu_card">
@@ -87,7 +149,13 @@
                     </div>
                     <div class="small_card">   
                         <!-- heart ko shape -->
-                        <a class="fa-solid fa-heart" href="favSelect" ></a>
+                        <i >
+                            <form action="favSelect" method="post">
+                                <input type="hidden" name="restuName" value="<%= shop_name[i]%>">
+                                <input type="hidden" name="id" value="<%= "0" + (i + 1)%>">
+                                <input type="submit" value="&hearts;" class="submit-button">
+                            </form>
+                        </i>
                     </div>
                     <div class="menu_info">
                         <h2><%=shop_name[i]%></h2>
@@ -111,7 +179,7 @@
         </div>
 
 
-        <hr>
+
         <!-- Review -->
 
         <div class="review" id="Review">
@@ -152,7 +220,7 @@
                 <%}%>
             </div>
         </div>
-        <hr>
+
         <!-- Login -->
         <div class="login" id="Login">
             <h1><span>Login</span>Now</h1>
