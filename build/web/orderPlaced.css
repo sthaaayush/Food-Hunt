@@ -1,0 +1,41 @@
+.container {
+    width: 80%;
+    background-color: #1fc8db;
+    background-image: linear-gradient(140deg, #EADEDB 0%, #70bcb8 50%, #41d69d 75%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 2.5em;
+    transition: 0.9s;
+}
+
+.container::after{
+    width: 20px;
+    border: 1px black solid;
+}
+
+.container div {
+    margin: 10px;
+    padding: 10px;
+    font-weight: bolder;
+    font-family: 'sans-serif';
+    text-align: center;
+}
+
+.container .box1{
+    text-align: left;
+}
+
+.button a{
+    text-decoration: none;
+    color: black;
+    background-color: antiquewhite;
+    padding: 6px;
+    border-radius: 0.7em;
+}
+.button a:hover{
+    background-color:rgb(245, 228, 205, o.5) ;
+    color: rgb(19, 92, 175);
+}
